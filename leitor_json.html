@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="" id="arquivo">
+    <br>
+    <br>
+    <textarea name="" id="" cols="50" rows="10" id="previw"></textarea>
+    <br>
+    <br>
+    <button id="btndownload">Baixar arquivo</button>
+    <script>
+        const input = document.querySelector('#arquivo');
+        const previw = document.querySelector('#preeviw');
+        const btnDownload = document.querySelector('#btndownload');
+
+        //ficxar ouvindo quando o arquivo é carregado
+        input.addEventListener('change',function(){
+            //pegando o primeiro arquivo selecionado
+            const arquivo = this.files[0];
+            const leitor = new FileReader();
+
+            //quando o leitor terminar de ler o arquivo nos de o resultado
+            leitor.addEventListener('load', function(){
+                //aqui ele ja vai printar o resultado o arquivo lido
+                console.log(leitor.result);
+                document.querySelector("body > textarea").innerHTML = leitor.result
+            })
+
+            //se o arquivo lido nao estiver vazio..
+            if(arquivo){
+                leitor.readAsText(arquivo);
+            }
+        })
+        </script>
+</body>
+</html>
